@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  fizzbuzz:
+    build: .
+    image: fizzbuzz-api:latest
+    ports:
+      - "4255:4255"
+    environment:
+      - FBAPI_HOST=0.0.0.0
+      - FBAPI_PORT=4255
+      - GIN_MODE=release
+    restart: unless-stopped

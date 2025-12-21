@@ -1,0 +1,26 @@
+# Built artifacts
+bin/
+_app/
+
+# Go build cache
+**/pkg/
+
+# VCS
+.git
+.gitignore
+
+# Editor files
+.vscode
+.idea
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node and other
+node_modules
+npm-debug.log
+
+# Logs
+*.log
