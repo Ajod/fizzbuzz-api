@@ -70,7 +70,7 @@ func (s *Server) Run() {
 	}()
 	s.log.Info("fizzbuzz-api server running", "host", s.cfg.Host, "port", s.cfg.Port)
 
-	// Graceful shutdown on interrupt signal (finish requests before shutting down)
+	// Graceful shutdown on interrupt signal
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 	<-quit
