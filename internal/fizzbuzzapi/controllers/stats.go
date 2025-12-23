@@ -60,13 +60,6 @@ func (ctrl *FizzBuzzStatsController) SaveStat(req types.FizzBuzzRequest) error {
 }
 
 func (ctrl *FizzBuzzStatsController) serializeRequest(req types.FizzBuzzRequest) (string, error) {
-	// Normalize the request parameters first to avoid different serializations for same logical requests
-	// We organize Int1/Str1 and Int2/Str2 so that Int1 is always <= Int2
-	if req.Int1 > req.Int2 {
-		req.Int1, req.Int2 = req.Int2, req.Int1
-		req.Str1, req.Str2 = req.Str2, req.Str1
-	}
-
 	b, err := json.Marshal(req)
 	if err != nil {
 		return "", err

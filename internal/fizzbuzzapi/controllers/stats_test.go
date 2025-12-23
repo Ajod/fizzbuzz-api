@@ -114,8 +114,8 @@ func Test_SaveAndGetStatsConcurrency(t *testing.T) {
 	}
 }
 
-// Test that reversed requests are considered equal, and their counts are aggregated
-func Test_ReversedRequestsAreEqual(t *testing.T) {
+// Test that reversed requests are not considered equal, and their counts are not aggregated
+func Test_ReversedRequestsAreNotEqual(t *testing.T) {
 	assert := assert.New(t)
 	recorder := NewFizzBuzzStatsController(&mockLogger{})
 	req1 := types.FizzBuzzRequest{Int1: 3, Int2: 5, Limit: 15, Str1: "Fizz", Str2: "Buzz"}
@@ -126,6 +126,6 @@ func Test_ReversedRequestsAreEqual(t *testing.T) {
 	err = recorder.SaveStat(req2)
 	assert.NoError(err)
 	stats := recorder.GetStats()
-	assert.Equal(2, stats.Count)
-	assert.Len(stats.MostFrequentRequests, 1)
+	assert.Equal(1, stats.Count)
+	assert.Len(stats.MostFrequentRequests, 2)
 }

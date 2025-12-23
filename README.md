@@ -98,7 +98,7 @@ Configuration is loaded from environment variables with prefix `FBAPI_` (see `in
   - Stats are recorded via a storage abstraction. The current implementation is an in-memory map (`map[string]int`). Other storage implementations are planned but not implemented.
   - You can configure `FBAPI_STATS_STORAGE` (e.g., `inmemory` or `file`) but currently only `inmemory` is implemented.
   - The API exposes the most frequent request(s) and the highest frequency count.
-  - The API normalizes the parameters of the request such that int1 <= int2. This means that `"int1": 3, "int2": 5, "str1": "fizz", "str2": "buzz"` and `"int1": 5, "int2": 3, "str1": "buzz", "str2": "fizz"` are **equal**.
+  - The parameters of the request are named meaningfully for a deterministic result. This means that `"int1": 3, "int2": 5, "str1": "fizz", "str2": "buzz"` and `"int1": 5, "int2": 3, "str1": "buzz", "str2": "fizz"` are **not equal** as far as statistics are concerned.
 
 ---
 
