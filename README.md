@@ -30,6 +30,34 @@ $env:FBAPI_PORT="4255"; $env:FBAPI_HOST="localhost"
 go run ./cmd/fizzbuzz-api
 ```
 
+Run with Docker (two options):
+
+Option A — build the image and run it manually
+
+```bash
+# build the image
+docker build -t fizzbuzz-api:latest .
+
+# run the container (maps container port 4255 to host port 4255)
+docker run --rm -p 4255:4255 fizzbuzz-api:latest
+```
+
+- The `Dockerfile` sets default environment variables (e.g. `FBAPI_HOST`, `FBAPI_PORT`, `FBAPI_MAX_FIZZBUZZ_LIMIT`, `FBAPI_MAX_STRING_LENGTH`). You can change those defaults by editing the `Dockerfile`'s `ENV` lines or override them at runtime with `-e`, e.g.:
+
+```bash
+# override a variable at runtime
+docker run --rm -p 4255:4255 -e FBAPI_PORT=9090 fizzbuzz-api:latest
+```
+
+Option B — use docker compose
+
+```bash
+# build and run using docker compose (runs in detached mode)
+docker compose up --build -d
+```
+
+- You can change environment parameters in `docker-compose.yml` under `services.fizzbuzz.environment` if needed (for example to change `FBAPI_PORT` or `FBAPI_HOST`). If you change the container port mapping, update the `-p` mapping or the `ports` section in `docker-compose.yml` accordingly.
+
 Run tests:
 
 ```powershell
